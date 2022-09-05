@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
+    private void OnMouseDown()
+    {
+        
+    }
+
     private void FixedUpdate()
     {
         
