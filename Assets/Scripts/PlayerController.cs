@@ -18,18 +18,47 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
-    }
 
-    private void OnMouseDown()
-    {
-        
+
+
+        if (Input.GetMouseButtonDown(0) && movement.x > 0)
+        {
+            animator.SetBool("attackRight", true);
+        }
+
+        if (Input.GetMouseButtonDown(0) && movement.x < 0)
+        {
+            animator.SetBool("attackLeft", true);
+        }
+
+        if (Input.GetMouseButtonDown(0) && movement.y > 0)
+        {
+            animator.SetBool("attackUp", true);
+        }
+
+        if (Input.GetMouseButtonDown(0) && movement.y < 0)
+        {
+            animator.SetBool("attackDown", true);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetBool("attackDown", true);
+        }
+
     }
 
     private void FixedUpdate()
     {
-        
       rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
 
+    private void CancelAttackAnimation()
+    {
+        animator.SetBool("attackRight", false);
+        animator.SetBool("attackLeft",  false);
+        animator.SetBool("attackUp",    false);
+        animator.SetBool("attackDown",  false);
     }
 
 }

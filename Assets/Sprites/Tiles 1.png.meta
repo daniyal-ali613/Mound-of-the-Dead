@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 13c19a0c234e4db498a19c5231af1820
+guid: d64b5a3939a512b47b781f198ffc010f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tiles_
+      name: Tiles_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 405
-        width: 1023
-        height: 483
+        x: 509
+        y: 550
+        width: 514
+        height: 490
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,9 +141,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
+        y: 1088
         width: 512
-        height: 512
+        height: 361
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +184,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 512
+        width: 507
         height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -224,10 +224,10 @@ TextureImporter:
       name: Tiles_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 747
-        width: 223
-        height: 232
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,13 +316,13 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Tiles_1: 1782850816
+      Tiles_0: -956557845
       Tiles_5: 1272031237
       Tiles_6: -1476095797
       Tiles_7: 1268294665
       Tiles_4: -636566687
       Tiles_3: -746845884
       Tiles_8: 1715930742
-      Tiles_: -956557845
       Tiles_2: -2049319105
   spritePackingTag: 
   pSDRemoveMatte: 0
