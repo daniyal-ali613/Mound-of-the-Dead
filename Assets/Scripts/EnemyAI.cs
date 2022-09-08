@@ -73,14 +73,7 @@ public class EnemyAI : MonoBehaviour
             currentWayPoint++;
         }
 
-        if (force.x >= 0.01f)
-            animator.SetBool("Horizontal", true);
-
-
-        else if (force.x <= 0.01f)
-        {
-            animator.SetBool("Horizontal", false);
-        }
+        
 
         if(dist < 5)
         {
