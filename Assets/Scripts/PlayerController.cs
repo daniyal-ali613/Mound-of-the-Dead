@@ -7,8 +7,20 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Animator animator;
     public Rigidbody2D rb;
-    Vector2 movement;
+    public GameObject spawnpoint1;
+    public GameObject spawnpoint2;
+    public GameObject spawnpoint3;
+    public GameObject spawnpoint4;
 
+    public Vector2 movement;
+
+    private void Start()
+    {
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint1.GetComponent<Collider2D>());
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint2.GetComponent<Collider2D>());
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint3.GetComponent<Collider2D>());
+        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint4.GetComponent<Collider2D>());
+    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -46,6 +58,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("attackDown", true);
         }
 
+
     }
 
     private void FixedUpdate()
@@ -53,7 +66,7 @@ public class PlayerController : MonoBehaviour
       rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void CancelAttackAnimation()
+    public void CancelAttackAnimation()
     {
         animator.SetBool("attackRight", false);
         animator.SetBool("attackLeft",  false);

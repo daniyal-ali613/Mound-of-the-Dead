@@ -7,11 +7,10 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform target;
     public Transform enemyGFX;
-    public Animator animator;
-    public float dist;
-
+    public float dist; 
     public float speed = 200f;
     public float nextWayPointDistance = 3f;
+   
     // public List <Sprite> enemySprites = new List<Sprite>();
 
     Path path;
@@ -26,7 +25,9 @@ public class EnemyAI : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
+
         InvokeRepeating("UpdatePath", 0f, .5f);
+
     }
 
     void UpdatePath()
@@ -72,8 +73,6 @@ public class EnemyAI : MonoBehaviour
         {
             currentWayPoint++;
         }
-
-        
 
         if(dist < 5)
         {
