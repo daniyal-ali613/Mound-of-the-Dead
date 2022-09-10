@@ -14,13 +14,6 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 movement;
 
-    private void Start()
-    {
-        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint1.GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint2.GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint3.GetComponent<Collider2D>());
-        //Physics2D.IgnoreCollision(GetComponent<Collider2D>(), spawnpoint4.GetComponent<Collider2D>());
-    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");

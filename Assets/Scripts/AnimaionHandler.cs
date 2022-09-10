@@ -5,11 +5,16 @@ using UnityEngine;
 public class AnimaionHandler : MonoBehaviour
 {
     public PlayerController playerController;
-    public Animator animator;
+    Animator animator;
 
+
+    private void Awake()
+    {
+        animator = this.GetComponent<Animator>();
+    }
     void Start()
     {
-        animator.SetBool("forward", false);
+        this.animator.SetBool("forward", false);
     }
 
     void Update()
@@ -23,18 +28,18 @@ public class AnimaionHandler : MonoBehaviour
         if (playerController.transform.position.y > this.transform.position.y)
         {
             Debug.Log("Up");
-            animator.SetBool("backward", true);
-            animator.SetBool("right", false);
-            animator.SetBool("left", false);
+            this.animator.SetBool("backward", true);
+            this.animator.SetBool("right", false);
+            this.animator.SetBool("left", false);
         }
 
         if (playerController.transform.position.y < this.transform.position.y)
         {
             Debug.Log("Down");
 
-            animator.SetBool("backward", false);
-            animator.SetBool("right", false);
-            animator.SetBool("left", false);
+            this.animator.SetBool("backward", false);
+            this.animator.SetBool("right", false);
+            this.animator.SetBool("left", false);
         }
 
 
@@ -42,9 +47,9 @@ public class AnimaionHandler : MonoBehaviour
         {
             Debug.Log("Right");
 
-            animator.SetBool("right", true);
-            animator.SetBool("backward", false);
-            animator.SetBool("left", false);
+            this.animator.SetBool("right", true);
+            this.animator.SetBool("backward", false);
+            this.animator.SetBool("left", false);
 
         }
 
@@ -52,15 +57,15 @@ public class AnimaionHandler : MonoBehaviour
         {
             Debug.Log("Left");
 
-            animator.SetBool("left", true);
-            animator.SetBool("backward", false);
-            animator.SetBool("right", false);
+            this.animator.SetBool("left", true);
+            this.animator.SetBool("backward", false);
+            this.animator.SetBool("right", false);
         }
     }
 
     public void RunState()
     {
-        animator.SetBool("forward", true);
+        this.animator.SetBool("forward", true);
     }
 
 }
