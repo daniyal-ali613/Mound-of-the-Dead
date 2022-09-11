@@ -25,42 +25,11 @@ public class AnimaionHandler : MonoBehaviour
     private void EnemyAnimationState()
     {
 
-        if (playerController.transform.position.y > this.transform.position.y)
-        {
-            Debug.Log("Up");
-            this.animator.SetBool("backward", true);
-            this.animator.SetBool("right", false);
-            this.animator.SetBool("left", false);
-        }
+        animator.SetBool("backward", playerController.transform.position.y > transform.position.y);
+        animator.SetBool("forward", playerController.transform.position.y < transform.position.y);
+        animator.SetBool("right", playerController.transform.position.x > transform.position.x);
+        animator.SetBool("left", playerController.transform.position.x < transform.position.x);
 
-        if (playerController.transform.position.y < this.transform.position.y)
-        {
-            Debug.Log("Down");
-
-            this.animator.SetBool("backward", false);
-            this.animator.SetBool("right", false);
-            this.animator.SetBool("left", false);
-        }
-
-
-        if (playerController.transform.position.x > this.transform.position.x)
-        {
-            Debug.Log("Right");
-
-            this.animator.SetBool("right", true);
-            this.animator.SetBool("backward", false);
-            this.animator.SetBool("left", false);
-
-        }
-
-        if (playerController.transform.position.x < this.transform.position.x)
-        {
-            Debug.Log("Left");
-
-            this.animator.SetBool("left", true);
-            this.animator.SetBool("backward", false);
-            this.animator.SetBool("right", false);
-        }
     }
 
     public void RunState()

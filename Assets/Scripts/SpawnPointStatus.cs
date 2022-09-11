@@ -14,14 +14,15 @@ public class SpawnPointStatus : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Walls"))
         {
-            spawning = false;
+            spawning = true;
         }
 
         else
         {
-            spawning = true;
+            spawning = false;
+
         }
-        
+
     }
 
     public bool GetSpawn()

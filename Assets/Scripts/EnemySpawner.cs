@@ -7,7 +7,6 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> spawnPoints = new List<Transform>();
     public PlayerController playerController;
     public List<GameObject> enemy = new List<GameObject>();
-    SpawnPointStatus spawnPointStatus;
     int rand;
     int i, counter;
 
@@ -15,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
     {
         i = 0;
         counter = 0;
-        spawnPointStatus = FindObjectOfType<SpawnPointStatus>();
         StartCoroutine(StartSpawning());
     }
 
@@ -26,21 +24,26 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(10);
 
             rand = Random.Range(0, 3);
-            Collider2D spawnStatus;
-            spawnStatus = spawnPoints[rand].GetComponent<Collider2D>();
 
-            if(spawnPointStatus.GetSpawn() == false)
+            if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == true)
             {
-               yield return null;
+                yield return null;
+                Debug.Log("Nahi");
+                Debug.Log(rand);
+
             }
 
-            else
+            else if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == false)
             {
                 enemy[i].SetActive(true);
                 enemy[i].transform.position = spawnPoints[rand].position;
                 i++;
+                Debug.Log("Han");
+                Debug.Log(rand);
+
+
             }
-           
+
         } while (counter <= 20);
     }
 }
