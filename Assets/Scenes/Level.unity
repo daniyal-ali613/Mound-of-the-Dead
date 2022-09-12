@@ -40433,7 +40433,7 @@ GameObject:
   - component: {fileID: 657099165}
   - component: {fileID: 657099167}
   - component: {fileID: 657099166}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemySpawnPoint 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40465,7 +40465,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.22155562, y: 0.056414545}
@@ -40681,7 +40681,7 @@ GameObject:
   - component: {fileID: 730391573}
   - component: {fileID: 730391575}
   - component: {fileID: 730391574}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemySpawnPoint 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40713,7 +40713,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2983321, y: -0.05788506}
@@ -56820,7 +56820,7 @@ GameObject:
   - component: {fileID: 1163490154}
   - component: {fileID: 1163490156}
   - component: {fileID: 1163490155}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemySpawnPoint 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56852,7 +56852,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2669914, y: -0.13905802}
@@ -57084,7 +57084,7 @@ GameObject:
   - component: {fileID: 1283787996}
   - component: {fileID: 1283787998}
   - component: {fileID: 1283787997}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemySpawnPoint 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57116,7 +57116,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.4427618, y: 0.0114801545}
@@ -57306,7 +57306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1475898327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58504,7 +58504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693061724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.23, z: 0}
   m_LocalScale: {x: 0.3762, y: 0.3762, z: 0.3762}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -60291,7 +60291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &8275639386661556801
 Rigidbody2D:
   serializedVersion: 4

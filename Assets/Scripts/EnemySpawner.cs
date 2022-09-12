@@ -21,11 +21,11 @@ public class EnemySpawner : MonoBehaviour
     {
         do
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(3);
 
             rand = Random.Range(0, 3);
 
-            if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == true)
+            if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == false)
             {
                 yield return null;
                 Debug.Log("Nahi");
@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
             }
 
-            else if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == false)
+            else if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == true)
             {
                 enemy[i].SetActive(true);
                 enemy[i].transform.position = spawnPoints[rand].position;

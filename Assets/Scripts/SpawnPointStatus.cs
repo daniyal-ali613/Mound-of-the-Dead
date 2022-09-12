@@ -10,19 +10,19 @@ public class SpawnPointStatus : MonoBehaviour
         spawning = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Walls"))
         {
-            spawning = true;
+            spawning = false;
         }
 
         else
         {
-            spawning = false;
+            spawning = true;
 
         }
-
     }
 
     public bool GetSpawn()

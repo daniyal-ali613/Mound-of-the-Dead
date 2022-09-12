@@ -25,13 +25,17 @@ public class AnimaionHandler : MonoBehaviour
     private void EnemyAnimationState()
     {
 
-        animator.SetBool("backward", playerController.transform.position.y > transform.position.y);
-        animator.SetBool("forward", playerController.transform.position.y < transform.position.y);
-        animator.SetBool("right", playerController.transform.position.x > transform.position.x);
-        animator.SetBool("left", playerController.transform.position.x < transform.position.x);
+        animator.SetBool("backward", playerController.transform.position.y >  transform.position.y && playerController.transform.position.x == 0 && transform.position.x == 0);
+        animator.SetBool("forward",  playerController.transform.position.y <  transform.position.y && playerController.transform.position.x == 0 && transform.position.x == 0);
+        animator.SetBool("backward", playerController.transform.position.y >  transform.position.y && playerController.transform.position.x > transform.position.x);
+        animator.SetBool("backward", playerController.transform.position.y >  transform.position.y && playerController.transform.position.x < transform.position.x);
+        animator.SetBool("forward",  playerController.transform.position.y <  transform.position.y && playerController.transform.position.x < transform.position.x);
+        animator.SetBool("forward",  playerController.transform.position.y <  transform.position.y && playerController.transform.position.x > transform.position.x);
+        animator.SetBool("right",     playerController.transform.position.x >  transform.position.x && playerController.transform.position.y == 0 && transform.position.y == 0);
+        animator.SetBool("left",    playerController.transform.position.x <  transform.position.x && playerController.transform.position.y == 0  && transform.position.y == 0);
 
     }
-
+    
     public void RunState()
     {
         this.animator.SetBool("forward", true);
