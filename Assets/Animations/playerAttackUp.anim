@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: playerAttackUp
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -49,6 +49,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: -1552186902, guid: 29adf2f0067831345829cf88bd70b8f9, type: 3}
     - {fileID: 1026747230, guid: 29adf2f0067831345829cf88bd70b8f9, type: 3}
@@ -83,6 +84,13 @@ AnimationClip:
   m_Events:
   - time: 0.41666666
     functionName: CancelAttackAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.41666666
+    functionName: 
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
