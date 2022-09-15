@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     public EnemyAI enemyAI;
+    public EnemyHealth enemyHealth;
     public GameObject spawnpoint1;
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
@@ -57,7 +58,6 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("attackDown", true);
         }
 
-
     }
 
     private void FixedUpdate()
@@ -73,16 +73,18 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("attackDown", false);
     }
 
-    public void AttackDetector()
+    public void PlayerAttackDetector()
     {
         if (enemyAI.dist < enemyAI.minDistance && this.movement.x > 0 && enemyAI.direction.x > 0)
         {
             Debug.Log("attack");
+            enemyHealth.TakeDamage(1);
         }
 
         else if (enemyAI.dist < enemyAI.minDistance && this.movement.y > 0 && enemyAI.direction.y > 0)
         {
             Debug.Log("Attack");
+            enemyHealth.TakeDamage(1);
 
         }
     }
