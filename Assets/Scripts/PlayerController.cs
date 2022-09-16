@@ -13,14 +13,9 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
     public GameObject spawnpoint4;
-    Coroutine blinkRoutine;
-
     public Vector2 movement;
 
-    private void Awake()
-    {
-        blinkRoutine = StartCoroutine(BlinkAnimation());
-    }
+  
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -45,17 +40,19 @@ public class PlayerController : MonoBehaviour
 
         else if (Input.GetMouseButtonDown(0) && movement.y > 0)
         {
-            animator.SetBool("attackUp", true);
+           
+            animator.SetFloat("attackUp", 1);
         }
 
         else if (Input.GetMouseButtonDown(0) && movement.y < 0)
         {
-            animator.SetBool("attackDown", true);
+          
+            animator.SetFloat("attackDown", 1);
         }
 
         else if (Input.GetMouseButtonDown(0))
         {
-            animator.SetBool("attackDown", true);
+            animator.SetFloat("attackDown", 1);
         }
 
     }
@@ -67,57 +64,31 @@ public class PlayerController : MonoBehaviour
 
     public void CancelAttackAnimation()
     {
-        animator.SetBool("attackRight", false);
-        animator.SetBool("attackLeft", false);
-        animator.SetBool("attackUp", false);
-        animator.SetBool("attackDown", false);
+        animator.SetFloat("attackRight", 0);
+        animator.SetFloat("attackLeft", 0);
+        animator.SetFloat("attackUp", 0);
+        animator.SetFloat("attackDown", 0);
     }
 
     public void PlayerAttackDetector()
     {
-        if (enemyAI.dist < enemyAI.minDistance && this.movement.x > 0 && enemyAI.direction.x > 0)
+        if (enemyAI.dist < enemyAI.minHorizotalDistance && this.movement.x > 0 && enemyAI.direction.x > 0)
         {
             Debug.Log("attack");
             enemyHealth.TakeDamage(1);
+
+
+            
         }
 
-        else if (enemyAI.dist < enemyAI.minDistance && this.movement.y > 0 && enemyAI.direction.y > 0)
+        else if (enemyAI.dist < enemyAI.minVerticleDistance && this.movement.y > 0 && enemyAI.direction.y > 0)
         {
             Debug.Log("Attack");
             enemyHealth.TakeDamage(1);
+         
+            
 
         }
-    }
-
-    public void Blink()
-    {
-        if (enemyAI.dist < enemyAI.minDistance && this.movement.x > 0 && enemyAI.direction.x > 0)
-        {
-            if (blinkRoutine == null)
-            {
-
-                StartCoroutine(BlinkAnimation());
-
-            }
-
-            else if (enemyAI.dist < enemyAI.minDistance && this.movement.y > 0 && enemyAI.direction.y > 0)
-            {
-                if (blinkRoutine == null)
-                {
-                    StartCoroutine(BlinkAnimation());
-                }
-            }
-        }
-
-    }
-
-    IEnumerator BlinkAnimation()
-    {
-        animator.SetBool("damage", true);
-
-        yield return new WaitForSeconds(0.2f);
-
-        animator.SetBool("damage", false);
     }
 
 }
