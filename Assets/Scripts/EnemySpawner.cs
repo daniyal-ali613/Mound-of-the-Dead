@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> spawnPoints = new List<Transform>();
     public PlayerController playerController;
     public List<GameObject> enemy = new List<GameObject>();
+    public AudioClip spawnSound;
     int rand;
     int i, counter;
 
@@ -21,27 +22,25 @@ public class EnemySpawner : MonoBehaviour
     {
         do
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
 
             rand = Random.Range(0, 3);
 
             if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == false)
             {
                 yield return null;
-                Debug.Log("Nahi");
                 Debug.Log(rand);
 
             }
 
             else if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == true)
             {
+                
                 enemy[i].SetActive(true);
+                GameObject.FindObjectOfType<PlayerController>().targets.Add(enemy[i]);
+                AudioSource.PlayClipAtPoint(spawnSound, Camera.main.transform.position);
                 enemy[i].transform.position = spawnPoints[rand].position;
                 i++;
-                Debug.Log("Han");
-                Debug.Log(rand);
-
-
             }
 
         } while (counter <= 20);

@@ -17,8 +17,9 @@ public class EnemyAI : MonoBehaviour
     public Vector2 direction;
     private Vector2 smoothedVelocity;
     public SpriteRenderer sprite;
+  
 
-    bool attack;
+    public bool attack;
 
     public float smoothedSpeed;
   
@@ -42,6 +43,7 @@ public class EnemyAI : MonoBehaviour
 
         dist = Vector3.Distance(this.transform.position, playerController.transform.position);
         attack = false;
+        
     }
 
    
@@ -112,6 +114,7 @@ public class EnemyAI : MonoBehaviour
             else if (direction.x < 0 && rb.velocity.y <= 0.0)
             {
                 animator.SetBool("attackLeft", true);
+        
                 attack = true;
             }
         }
@@ -119,9 +122,11 @@ public class EnemyAI : MonoBehaviour
         else
         {
             attack = false;
+            CancelAttackAnimations();
         }
 
-        if(dist < minVerticleDistance)
+
+        if (dist < minVerticleDistance)
         {
              if (direction.y > 0 && rb.velocity.x <= 0.0)
             {
@@ -136,13 +141,12 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-
-
         else
         {
             attack = false;
             CancelAttackAnimations();
         }
+
     }
 
     private void CancelAttackAnimations()
@@ -157,20 +161,12 @@ public class EnemyAI : MonoBehaviour
     {
         if(attack == true )
         {
-            Debug.Log("Attack");
-
-                StartCoroutine(BlinkAnimation());
-        
-
+           StartCoroutine(BlinkAnimation());
         }
 
         else if(dist < minVerticleDistance && playerController.movement.y > 0 && this.direction.y > 0)
         {
-            Debug.Log("Attack");
-
-                StartCoroutine(BlinkAnimation());
-           
-
+          StartCoroutine(BlinkAnimation());
         }
     }
 
@@ -184,8 +180,9 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
              rb.bodyType = RigidbodyType2D.Static;
+            
 
-            if(playerController.transform.position.y < 0)
+            if (playerController.transform.position.y < 0)
             {
                playerController.GetComponent<SpriteRenderer>().sortingOrder = 4;
             }

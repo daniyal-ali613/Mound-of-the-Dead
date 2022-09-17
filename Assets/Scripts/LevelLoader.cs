@@ -6,13 +6,32 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     SceneManager sceneManager;
-    void Start()
+    public void RestartScene()
     {
-        
+        Time.timeScale = 1;
+        SceneManager.LoadScene(2);
     }
 
-  public void MainMenu()
+    public void LoadMainMenu()
     {
-        
+        SceneManager.LoadScene(0);
+    }
+
+
+    public void LoadCutScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadCreditsScene()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

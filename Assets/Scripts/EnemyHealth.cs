@@ -6,14 +6,15 @@ public class EnemyHealth : MonoBehaviour
 {
     int damage;
     public Animator animator;
+    public Rigidbody2D rb;
     void Start()
     {
-        damage = 6;
+        this.damage = 4;
     }
 
     public void TakeDamage(int subtract )
     {
-        damage -= subtract;
+        this.damage -= subtract;
     }
 
     private void Update()
@@ -21,6 +22,15 @@ public class EnemyHealth : MonoBehaviour
         if(this.damage <= 0)
         {
             animator.SetBool("death", true);
+            this.rb.bodyType = RigidbodyType2D.Static;
+            StartCoroutine(murderedEnemy());
         }
+    }
+
+    IEnumerator  murderedEnemy()
+    {
+        yield return new  WaitForSeconds(2f);
+
+        //this.gameObject.SetActive(false);
     }
 }
