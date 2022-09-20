@@ -250,9 +250,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Syed Daniyal Ali
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -360,7 +361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 633.89014, y: -145.49106}
+  m_AnchoredPosition: {x: 619, y: -145.49106}
   m_SizeDelta: {x: 389.6445, y: 192.5971}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308872052
@@ -385,9 +386,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Developer and Designer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -446,7 +448,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -64.28894, w: 65.60092}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -520,9 +522,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Taha Ali Murtaza
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -655,9 +658,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Sana Sikandar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -849,9 +853,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Artist and Designer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -984,9 +989,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: Developer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_sharedMaterial: {fileID: -2418819289353646831, guid: 9640d47adea96f04e95aafdacfbe7345, type: 2}
-  m_fontSharedMaterials: []
+  m_fontAsset: {fileID: 11400000, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_sharedMaterial: {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
+  m_fontSharedMaterials:
+  - {fileID: 8058510901370418902, guid: becdc947a0c0db748b5ebf9649dbbd1d, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -1177,6 +1183,7 @@ GameObject:
   - component: {fileID: 1571188623}
   - component: {fileID: 1571188622}
   - component: {fileID: 1571188621}
+  - component: {fileID: 1571188624}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1250,6 +1257,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1571188624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571188620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!4 &5141444166768029160
 Transform:
   m_ObjectHideFlags: 0
@@ -39273,7 +39313,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.8773585, g: 0.82501227, b: 0.7482378, a: 1}
+  m_Color: {r: 0.7264151, g: 0.68106085, b: 0.61950874, a: 1}
   m_Origin: {x: -47, y: -19, z: 0}
   m_Size: {x: 69, y: 55, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -39315,7 +39355,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

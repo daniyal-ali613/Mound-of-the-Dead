@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SpawnPoint
   - Walls
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Dirt
   - Player
   - Enemy
-  - 
+  - Symbols
   - 
   - 
   - 
