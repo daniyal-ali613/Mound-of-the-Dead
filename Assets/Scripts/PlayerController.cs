@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public Animator animator;
     public Rigidbody2D rb;
-    public List <GameObject> targets = new List <GameObject>();
+    private List <GameObject> targets = new List <GameObject>();
     public GameObject spawnpoint1;
     public GameObject spawnpoint2;
     public GameObject spawnpoint3;
@@ -61,20 +61,27 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("down");
         }
 
+        foreach (var target in targets)
+        {
+            if (target)
+            {
+                if (target.GetComponent<EnemyHealth>().killChecker() == true)
+                {
+                    targets.Remove(target);
+                }
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+       rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
-
-
 
     public void PlayerAttackDetector()
     {
         foreach (var target in targets)
         {
-            
             if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minHorizotalDistance)
             {
                 if (this.movement.x > 0 && target.GetComponentInChildren<EnemyAI>().direction.x < 0 || this.movement.x < 0 && target.GetComponentInChildren<EnemyAI>().direction.x > 0)
@@ -114,6 +121,11 @@ public class PlayerController : MonoBehaviour
         {
             size = new Vector2(1.89315081f, 4.97681141f);;
         }
+    }
+
+    public void AddTarget( GameObject target)
+    {
+        targets.Add(target);
     }
 
 }

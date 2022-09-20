@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public PlayerController playerController;
     public List<GameObject> enemy = new List<GameObject>();
     public AudioClip spawnSound;
+    public GameObject Restart;
     int rand;
     int i, counter;
 
@@ -18,6 +19,17 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(StartSpawning());
     }
 
+    private void Update()
+    {
+        if(counter >= 20)
+        {
+            Restart.SetActive(true);
+            counter = 0; 
+        }
+
+    }
+
+    
     IEnumerator StartSpawning()
     {
         do
@@ -37,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 
                 enemy[i].SetActive(true);
-                GameObject.FindObjectOfType<PlayerController>().targets.Add(enemy[i]);
+                GameObject.FindObjectOfType<PlayerController>().AddTarget(enemy[i]);
                 AudioSource.PlayClipAtPoint(spawnSound, Camera.main.transform.position);
                 enemy[i].transform.position = spawnPoints[rand].position;
                 i++;

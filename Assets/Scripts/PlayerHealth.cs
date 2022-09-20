@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float currentHealth;
+    public PlayerController player;
+    public float  maxHealth;
+    public bool die;
+    public GameObject RestartCanvas;
+    private void Start()
     {
-        
+        die = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int add)
     {
-        
+        currentHealth += add;
+    }
+
+    private void Update()
+    {
+        if(currentHealth  >= 100)
+        {
+            player.animator.SetBool("death", true);
+            die = true;
+            RestartCanvas.SetActive(true);
+        }
     }
 }

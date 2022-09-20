@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    SceneManager sceneManager;
+
+
     public void RestartScene()
     {
         Time.timeScale = 1;
@@ -17,6 +18,10 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoadGame()
+    {
+        SceneManager.LoadScene(2);
+    }
 
     public void LoadCutScene()
     {
@@ -34,4 +39,5 @@ public class LevelLoader : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

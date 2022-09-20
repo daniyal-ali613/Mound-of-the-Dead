@@ -17,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     public Vector2 direction;
     private Vector2 smoothedVelocity;
     public SpriteRenderer sprite;
+    public PlayerHealth playerHealth;
+    public AudioClip enemyAttackSound;
   
 
     public bool attack;
@@ -103,22 +105,27 @@ public class EnemyAI : MonoBehaviour
         animator.SetFloat("Horizontal", smoothedVelocity.normalized.x);
         animator.SetFloat("Vertical",   smoothedVelocity.normalized.y);
 
-        if (dist < minHorizotalDistance)
-        {
-            if (direction.x > 0 && rb.velocity.y <= 0.0)
-            {
-                animator.SetBool("attackRight", true);
-                attack = true;
-            }
 
-            else if (direction.x < 0 && rb.velocity.y <= 0.0)
+        if(playerHealth.die != false)
+        {
+            if (dist < minHorizotalDistance)
             {
-                animator.SetBool("attackLeft", true);
-        
-                attack = true;
+                if (direction.x > 0 && rb.velocity.y <= 0.0)
+                {
+                    animator.SetBool("attackRight", true);
+                    attack = true;
+                }
+
+                else if (direction.x < 0 && rb.velocity.y <= 0.0)
+                {
+                    animator.SetBool("attackLeft", true);
+
+                    attack = true;
+                }
             }
         }
 
+       
         else
         {
             attack = false;
@@ -126,28 +133,33 @@ public class EnemyAI : MonoBehaviour
         }
 
 
-        if (dist < minVerticleDistance)
+        if (playerHealth.die == false)
         {
-             if (direction.y > 0 && rb.velocity.x <= 0.0)
+
+            if (dist < minVerticleDistance)
             {
-                animator.SetBool("attackUp", true);
-                attack = true;
+                if (direction.y > 0 && rb.velocity.x <= 0.0)
+                {
+                    animator.SetBool("attackUp", true);
+                    attack = true;
+                }
+
+                else if (direction.y < 0 && rb.velocity.x <= 0.0)
+                {
+                    animator.SetBool("attackDown", true);
+                    attack = true;
+                }
             }
 
-            else if (direction.y < 0 && rb.velocity.x <= 0.0)
+
+            else
             {
-                animator.SetBool("attackDown", true);
-                attack = true;
+                attack = false;
+                CancelAttackAnimations();
             }
         }
-
-        else
-        {
-            attack = false;
-            CancelAttackAnimations();
-        }
-
     }
+
 
     private void CancelAttackAnimations()
     {
@@ -162,11 +174,15 @@ public class EnemyAI : MonoBehaviour
         if(attack == true )
         {
            StartCoroutine(BlinkAnimation());
+            AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position);
+            playerHealth.TakeDamage(1);
         }
 
         else if(dist < minVerticleDistance && playerController.movement.y > 0 && this.direction.y > 0)
         {
           StartCoroutine(BlinkAnimation());
+          AudioSource.PlayClipAtPoint(enemyAttackSound, Camera.main.transform.position);
+          playerHealth.TakeDamage(1);
         }
     }
 
@@ -205,7 +221,11 @@ public class EnemyAI : MonoBehaviour
 
     IEnumerator BlinkAnimation()
     {
-        sprite.color = Color.red;
+        if(playerHealth.die != true)
+        {
+            sprite.color = Color.red;
+
+        }
 
         yield return new WaitForSeconds(0.2f);
 

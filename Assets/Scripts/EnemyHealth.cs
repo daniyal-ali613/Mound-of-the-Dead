@@ -7,9 +7,11 @@ public class EnemyHealth : MonoBehaviour
     int damage;
     public Animator animator;
     public Rigidbody2D rb;
+    bool killed;
     void Start()
     {
         this.damage = 4;
+        killed = false;
     }
 
     public void TakeDamage(int subtract )
@@ -27,10 +29,16 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public bool killChecker()
+    {
+        return killed;
+    }
+
     IEnumerator  murderedEnemy()
     {
         yield return new  WaitForSeconds(2f);
-
-        //this.gameObject.SetActive(false);
+        killed = true;
     }
+
+    
 }
