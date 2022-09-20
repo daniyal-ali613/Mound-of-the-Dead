@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         this.damage = 4;
-        killed = false;
+        this.killed = false;
     }
 
     public void TakeDamage(int subtract )
@@ -31,13 +31,13 @@ public class EnemyHealth : MonoBehaviour
 
     public bool killChecker()
     {
-        return killed;
+        return this.killed;
     }
 
     IEnumerator  murderedEnemy()
     {
         yield return new  WaitForSeconds(2f);
-        killed = true;
+        this.killed = true;
     }
 
     

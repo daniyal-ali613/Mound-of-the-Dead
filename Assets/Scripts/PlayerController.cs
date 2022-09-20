@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
         {
             if (target)
             {
-                if (target.GetComponent<EnemyHealth>().killChecker() == true)
+                if (target.GetComponentInChildren<EnemyHealth>().killChecker() == true)
                 {
-                    targets.Remove(target);
+                    target.gameObject.SetActive(false);
                 }
             }
         }
@@ -82,27 +82,36 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var target in targets)
         {
-            if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minHorizotalDistance)
+            if (target)
             {
-                if (this.movement.x > 0 && target.GetComponentInChildren<EnemyAI>().direction.x < 0 || this.movement.x < 0 && target.GetComponentInChildren<EnemyAI>().direction.x > 0)
+                if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minHorizotalDistance)
                 {
-                    Debug.Log("attack");
-                    target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
-                    target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
-                    AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
+                    if (this.movement.x > 0 && target.GetComponentInChildren<EnemyAI>().direction.x < 0 || this.movement.x < 0 && target.GetComponentInChildren<EnemyAI>().direction.x > 0)
+                    {
+                        Debug.Log("attack");
+                        target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
+                        target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
+                        AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
+                    }
+                }
+
+                else if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minVerticleDistance)
+                {
+                    if (this.movement.y > 0 && target.GetComponentInChildren<EnemyAI>().direction.y < 0 || this.movement.y < 0 && target.GetComponentInChildren<EnemyAI>().direction.y > 0)
+                    {
+                        Debug.Log("attack");
+                        target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
+                        target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
+                        AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
+                    }
                 }
             }
 
-            else if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minVerticleDistance)
+            else
             {
-                if (this.movement.y > 0 && target.GetComponentInChildren<EnemyAI>().direction.y < 0 || this.movement.y < 0 && target.GetComponentInChildren<EnemyAI>().direction.y > 0)
-                {
-                    Debug.Log("attack");
-                    target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
-                    target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
-                    AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
-                }
+                return;
             }
+
         }
 
     }
