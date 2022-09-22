@@ -19,11 +19,11 @@ public class EnemyAI : MonoBehaviour
     public SpriteRenderer sprite;
     public PlayerHealth playerHealth;
     public AudioClip enemyAttackSound;
-  
-
-    public bool attack;
-
+    float currentSpeed;
     public float smoothedSpeed;
+    bool attack;
+    bool horizontalDistance;
+    bool verticalDistance;
   
 
 
@@ -45,6 +45,10 @@ public class EnemyAI : MonoBehaviour
 
         dist = Vector3.Distance(this.transform.position, playerController.transform.position);
         attack = false;
+        currentSpeed = speed;
+        speed = 0;
+        horizontalDistance = false;
+        verticalDistance = false;
         
     }
 
@@ -106,10 +110,11 @@ public class EnemyAI : MonoBehaviour
         animator.SetFloat("Vertical",   smoothedVelocity.normalized.y);
 
 
-        if(playerHealth.die != false)
+        if (playerHealth.die != true)
         {
-            if (dist < minHorizotalDistance)
+            if (dist < minHorizotalDistance && verticalDistance == false);
             {
+                horizontalDistance = true;
                 if (direction.x > 0 && rb.velocity.y <= 0.0)
                 {
                     animator.SetBool("attackRight", true);
@@ -122,22 +127,24 @@ public class EnemyAI : MonoBehaviour
 
                     attack = true;
                 }
+
+                else if(dist > minHorizotalDistance) 
+                {
+                    horizontalDistance = false;
+                    attack = false;
+                    CancelAttackAnimations();
+                }
             }
-        }
-
-       
-        else
-        {
-            attack = false;
-            CancelAttackAnimations();
+          
         }
 
 
-        if (playerHealth.die == false)
+        if (playerHealth.die == true)
         {
 
-            if (dist < minVerticleDistance)
+            if (dist < minVerticleDistance && horizontalDistance == false)
             {
+                verticalDistance = true;
                 if (direction.y > 0 && rb.velocity.x <= 0.0)
                 {
                     animator.SetBool("attackUp", true);
@@ -149,14 +156,50 @@ public class EnemyAI : MonoBehaviour
                     animator.SetBool("attackDown", true);
                     attack = true;
                 }
-            }
+
+                else  if(dist > minVerticleDistance)
+                {
+                    verticalDistance = false;
+                    attack = false;
+                    CancelAttackAnimations();
+                }
 
 
-            else
-            {
-                attack = false;
-                CancelAttackAnimations();
+
             }
+        }
+
+      
+
+        DamageAnimation();
+    }
+
+    private void DamageAnimation()
+    {
+
+        if (playerController.movement.x > 0 && attack == true)
+        {
+            playerController.animator.SetTrigger("side");
+        }
+
+        else if (playerController.movement.x < 0 && attack == true)
+        {
+            playerController.animator.SetTrigger("side");
+        }
+
+        else if (playerController.movement.y > 0 && attack == true)
+        {
+            playerController.animator.SetTrigger("front");
+        }
+
+        else if (playerController.movement.y < 0 && attack == true)
+        {
+            playerController.animator.SetTrigger("front");
+        }
+
+        else if (attack == true)
+        {
+            playerController.animator.SetTrigger("front");
         }
     }
 
@@ -173,14 +216,12 @@ public class EnemyAI : MonoBehaviour
     {
         if(attack == true )
         {
-           StartCoroutine(BlinkAnimation());
             AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position);
             playerHealth.TakeDamage(1);
         }
 
         else if(dist < minVerticleDistance && playerController.movement.y > 0 && this.direction.y > 0)
         {
-          StartCoroutine(BlinkAnimation());
           AudioSource.PlayClipAtPoint(enemyAttackSound, Camera.main.transform.position);
           playerHealth.TakeDamage(1);
         }
@@ -195,17 +236,26 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-             rb.bodyType = RigidbodyType2D.Static;
-            
+            rb.bodyType = RigidbodyType2D.Static;
+
 
             if (playerController.transform.position.y < 0)
             {
-               playerController.GetComponent<SpriteRenderer>().sortingOrder = 4;
+                playerController.GetComponent<SpriteRenderer>().sortingOrder = 4;
             }
 
-            else if(playerController.transform.position.y > 0)
+            else if (playerController.transform.position.y > 0)
             {
                 playerController.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            }
+
+            
+
+
+
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                rb.bodyType = RigidbodyType2D.Static;
             }
         }
     }
@@ -217,20 +267,16 @@ public class EnemyAI : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
            
         }
-    }
 
-    IEnumerator BlinkAnimation()
-    {
-        if(playerHealth.die != true)
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            sprite.color = Color.red;
-
+            rb.bodyType = RigidbodyType2D.Dynamic;
         }
-
-        yield return new WaitForSeconds(0.2f);
-
-        sprite.color = Color.white;
     }
 
+    public void SpeedBooster()
+    {
+        speed = currentSpeed;
+    }
 
 }

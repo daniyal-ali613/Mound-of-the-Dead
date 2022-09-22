@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (this.movement.x > 0 && target.GetComponentInChildren<EnemyAI>().direction.x < 0 || this.movement.x < 0 && target.GetComponentInChildren<EnemyAI>().direction.x > 0)
                     {
-                        Debug.Log("attack");
                         target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
                         target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
                         AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
@@ -99,7 +98,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (this.movement.y > 0 && target.GetComponentInChildren<EnemyAI>().direction.y < 0 || this.movement.y < 0 && target.GetComponentInChildren<EnemyAI>().direction.y > 0)
                     {
-                        Debug.Log("attack");
                         target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
                         target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
                         AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
