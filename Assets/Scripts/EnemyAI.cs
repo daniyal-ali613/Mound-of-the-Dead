@@ -9,22 +9,20 @@ public class EnemyAI : MonoBehaviour
     public Transform enemyGFX;
     public Animator animator;
     public PlayerController playerController;
-    public float minHorizotalDistance;
-    public float minVerticleDistance;
+    public float maxDistance;
     public float speed = 200f;
     public float nextWayPointDistance = 3f;
-    public float dist;
     public Vector2 direction;
     private Vector2 smoothedVelocity;
     public SpriteRenderer sprite;
     public PlayerHealth playerHealth;
     public AudioClip enemyAttackSound;
+    public SpriteRenderer playerRenderer;
     float currentSpeed;
     public float smoothedSpeed;
     bool attack;
-    bool horizontalDistance;
-    bool verticalDistance;
-  
+    float dist,distance;
+
 
 
 
@@ -47,9 +45,6 @@ public class EnemyAI : MonoBehaviour
         attack = false;
         currentSpeed = speed;
         speed = 0;
-        horizontalDistance = false;
-        verticalDistance = false;
-        
     }
 
    
@@ -94,7 +89,7 @@ public class EnemyAI : MonoBehaviour
 
         rb.AddForce(force);
 
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
+        distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
 
         if (distance < nextWayPointDistance)
         {
@@ -106,70 +101,54 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
 
-        animator.SetFloat("Horizontal", smoothedVelocity.normalized.x);
-        animator.SetFloat("Vertical",   smoothedVelocity.normalized.y);
+        animator.SetFloat("Horizontal", direction.normalized.x  * distance * smoothedVelocity.normalized.x);
+        animator.SetFloat("Vertical",   direction.normalized.y  * distance * smoothedVelocity.normalized.y);
 
 
-        if (playerHealth.die != true)
+        if (playerHealth.die == false)
         {
-            if (dist < minHorizotalDistance && verticalDistance == false);
+            if (dist <= maxDistance)
             {
-                horizontalDistance = true;
-                if (direction.x > 0 && rb.velocity.y <= 0.0)
+                if (direction.x > 0 && rb.velocity.y <= 0 && rb.velocity.y <= 0)
                 {
                     animator.SetBool("attackRight", true);
                     attack = true;
                 }
 
-                else if (direction.x < 0 && rb.velocity.y <= 0.0)
+                if (direction.x < 0 && rb.velocity.y <= 0 && rb.velocity.x <= 0)
                 {
                     animator.SetBool("attackLeft", true);
-
                     attack = true;
                 }
 
-                else if(dist > minHorizotalDistance) 
-                {
-                    horizontalDistance = false;
-                    attack = false;
-                    CancelAttackAnimations();
-                }
-            }
-          
-        }
-
-
-        if (playerHealth.die == true)
-        {
-
-            if (dist < minVerticleDistance && horizontalDistance == false)
-            {
-                verticalDistance = true;
-                if (direction.y > 0 && rb.velocity.x <= 0.0)
+                if (direction.y > 0 && rb.velocity.x <= 0 && rb.velocity.y <= 0)
                 {
                     animator.SetBool("attackUp", true);
                     attack = true;
                 }
 
-                else if (direction.y < 0 && rb.velocity.x <= 0.0)
+                if (direction.y < 0 && rb.velocity.x <= 0 && rb.velocity.y <= 0)
                 {
                     animator.SetBool("attackDown", true);
                     attack = true;
                 }
+              
+            }
 
-                else  if(dist > minVerticleDistance)
-                {
-                    verticalDistance = false;
-                    attack = false;
-                    CancelAttackAnimations();
-                }
-
-
-
+            else
+            {
+                attack = false;
+                CancelAttackAnimations();
             }
         }
 
-      
+        else
+        {
+            attack = false;
+            CancelAttackAnimations();
+            animator.SetBool("Idle", true);
+        }
+
 
         DamageAnimation();
     }
@@ -184,7 +163,7 @@ public class EnemyAI : MonoBehaviour
 
         else if (playerController.movement.x < 0 && attack == true)
         {
-            playerController.animator.SetTrigger("side");
+            playerController.animator.SetTrigger("sideLeft");
         }
 
         else if (playerController.movement.y > 0 && attack == true)
@@ -219,12 +198,6 @@ public class EnemyAI : MonoBehaviour
             AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position);
             playerHealth.TakeDamage(1);
         }
-
-        else if(dist < minVerticleDistance && playerController.movement.y > 0 && this.direction.y > 0)
-        {
-          AudioSource.PlayClipAtPoint(enemyAttackSound, Camera.main.transform.position);
-          playerHealth.TakeDamage(1);
-        }
     }
 
     public void RunState()
@@ -239,33 +212,40 @@ public class EnemyAI : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
 
 
-            if (playerController.transform.position.y < 0)
+            if (playerController.movement.y < 0 &&  this.direction.y > 0)
             {
-                playerController.GetComponent<SpriteRenderer>().sortingOrder = 4;
+                playerRenderer.sortingOrder = 4;
             }
 
-            else if (playerController.transform.position.y > 0)
+            if (playerController.movement.y == 0 && this.direction.y > 0)
             {
-                playerController.GetComponent<SpriteRenderer>().sortingOrder = 2;
+                playerRenderer.sortingOrder = 2;
             }
 
-            
-
-
-
-            if (other.gameObject.CompareTag("Enemy"))
+            if (playerController.movement.y == 0 && this.direction.y < 0)
             {
-                rb.bodyType = RigidbodyType2D.Static;
+                playerRenderer.sortingOrder = 4;
+            }
+
+
+             if (playerController.movement.y > 0 && this.direction.y < 0)
+            {
+                playerRenderer.sortingOrder = 4;
             }
         }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+        }
     }
+
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
-           
         }
 
         if (other.gameObject.CompareTag("Enemy"))
@@ -277,6 +257,11 @@ public class EnemyAI : MonoBehaviour
     public void SpeedBooster()
     {
         speed = currentSpeed;
+    }
+
+    public float GetDist()
+    {
+        return dist;
     }
 
 }

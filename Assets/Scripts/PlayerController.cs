@@ -84,24 +84,11 @@ public class PlayerController : MonoBehaviour
         {
             if (target)
             {
-                if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minHorizotalDistance)
+                if (target.GetComponentInChildren<EnemyAI>().GetDist() < target.GetComponentInChildren<EnemyAI>().maxDistance)
                 {
-                    if (this.movement.x > 0 && target.GetComponentInChildren<EnemyAI>().direction.x < 0 || this.movement.x < 0 && target.GetComponentInChildren<EnemyAI>().direction.x > 0)
-                    {
                         target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
                         target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
                         AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
-                    }
-                }
-
-                else if (target.GetComponentInChildren<EnemyAI>().dist < target.GetComponentInChildren<EnemyAI>().minVerticleDistance)
-                {
-                    if (this.movement.y > 0 && target.GetComponentInChildren<EnemyAI>().direction.y < 0 || this.movement.y < 0 && target.GetComponentInChildren<EnemyAI>().direction.y > 0)
-                    {
-                        target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
-                        target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
-                        AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
-                    }
                 }
             }
 
@@ -109,24 +96,23 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-
         }
 
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Walls"))
         {
-            size = new Vector2(1.89315081f, 1.4193902f);
+            size = new Vector2(1.89315081f, 1.43315518f);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Walls"))
+        if (other.gameObject.CompareTag("Walls"))
         {
-            size = new Vector2(1.89315081f, 4.97681141f);;
+            size = new Vector2(1.89315081f, 5.01296949f);
         }
     }
 

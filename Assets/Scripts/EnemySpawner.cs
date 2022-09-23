@@ -9,24 +9,24 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> enemy = new List<GameObject>();
     public AudioClip spawnSound;
     public GameObject Restart;
+    public float timeToSpawn;
     int rand;
     int i, counter;
 
     void Start()
     {
         i = 0;
-        counter = 0;
+        counter = enemy.Count;
         StartCoroutine(StartSpawning());
     }
 
     private void Update()
     {
-        if(counter >= 20)
+        if(i > counter)
         {
             Restart.SetActive(true);
             counter = 0; 
         }
-
     }
 
     
@@ -34,15 +34,13 @@ public class EnemySpawner : MonoBehaviour
     {
         do
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(timeToSpawn);
 
             rand = Random.Range(0, 3);
 
             if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == false)
             {
                 yield return null;
-                Debug.Log(rand);
-
             }
 
             else if(spawnPoints[rand].GetComponent<SpawnPointStatus>().GetSpawn() == true)
@@ -55,6 +53,6 @@ public class EnemySpawner : MonoBehaviour
                 i++;
             }
 
-        } while (counter <= 20);
+        } while (i < counter);
     }
 }
