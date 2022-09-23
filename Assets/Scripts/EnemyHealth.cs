@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     bool killed;
+    public EnemySpawner spawner;
     void Start()
     {
         this.damage = 4;
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
     {
         yield return new  WaitForSeconds(2f);
         this.killed = true;
+        spawner.KillCounter(1);
     }
 
     
