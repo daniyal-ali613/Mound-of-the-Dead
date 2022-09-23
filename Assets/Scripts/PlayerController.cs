@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement;
     public BoxCollider2D collider;
     public AudioClip EnemyDamage;
+    public AudioClip AxeSwing;
     EnemyAI enemyAI;
     Vector2 size;
 
@@ -39,26 +40,35 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && movement.x > 0)
         {
             animator.SetTrigger("right");
+            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
         }
 
         else if (Input.GetMouseButtonDown(0) && movement.x < 0)
         {
             animator.SetTrigger("left");
+            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+
         }
 
         else if (Input.GetMouseButtonDown(0) && movement.y > 0)
         {
             animator.SetTrigger("up");
+            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+
         }
 
         else if (Input.GetMouseButtonDown(0) && movement.y < 0)
         {
             animator.SetTrigger("down");
+            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+
         }
 
         else if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("down");
+            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+
         }
 
         foreach (var target in targets)
