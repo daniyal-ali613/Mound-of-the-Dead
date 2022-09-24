@@ -25,7 +25,14 @@ public class PlayerHealth : MonoBehaviour
         {
             player.animator.SetBool("death", true);
             die = true;
-            RestartCanvas.SetActive(true);
+            StartCoroutine(ActivateCanvas()); 
         }
+    }
+
+    IEnumerator ActivateCanvas()
+    {
+        yield return new WaitForSeconds(2);
+        RestartCanvas.SetActive(true);
+        Time.timeScale = 0;
     }
 }

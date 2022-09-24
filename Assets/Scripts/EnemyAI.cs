@@ -101,8 +101,16 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
 
-        animator.SetFloat("Horizontal", direction.normalized.x  * distance * smoothedVelocity.normalized.x);
-        animator.SetFloat("Vertical",   direction.normalized.y  * distance * smoothedVelocity.normalized.y);
+        if (smoothedVelocity.magnitude < 0.1f)
+        {
+            animator.SetFloat("Horizontal", 0f);
+            animator.SetFloat("Vertical", 0f);
+        }
+        else
+        {
+            animator.SetFloat("Horizontal", smoothedVelocity.normalized.x);
+            animator.SetFloat("Vertical",   smoothedVelocity.normalized.y);
+        }
 
 
         if (playerHealth.die == false)
@@ -233,22 +241,12 @@ public class EnemyAI : MonoBehaviour
                 playerRenderer.sortingOrder = 4;
             }
         }
-
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
     }
 
 
     private void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            rb.bodyType = RigidbodyType2D.Dynamic;
-        }
-
-        if (other.gameObject.CompareTag("Enemy"))
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
