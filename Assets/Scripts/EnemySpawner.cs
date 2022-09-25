@@ -10,8 +10,8 @@ public class EnemySpawner : MonoBehaviour
     public AudioClip spawnSound;
     public GameObject Restart;
     public float timeToSpawn;
-    public GameObject playAgainCanvas;
     private int numOfEnemiesKilled;
+    Coroutine spawn;
     int rand;
     int i, counter;
 
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         i = 0;
         counter = enemy.Count;
         numOfEnemiesKilled = 0;
-        StartCoroutine(StartSpawning());
+        spawn = StartCoroutine(StartSpawning());
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
             counter = 0; 
         }
 
-        if(numOfEnemiesKilled == counter)
+        if(numOfEnemiesKilled >= counter)
         {
             StartCoroutine(ActivateCanvas());
         }
@@ -66,13 +66,24 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator ActivateCanvas()
     {
-        yield return new WaitForSeconds(2);
-        playAgainCanvas.SetActive(true);
+        yield return new WaitForSeconds(5);
         Time.timeScale = 0;
+        Restart.SetActive(true);
     }
 
     public void KillCounter(int kill)
     {
         numOfEnemiesKilled += kill;
     }
+
+    public void StopSpawning()
+    {
+        StopCoroutine(spawn);
+    }
+
+    public int GetScore()
+    {
+        return numOfEnemiesKilled;
+    }
 }
+

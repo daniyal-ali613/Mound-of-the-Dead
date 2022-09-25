@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public float  maxHealth;
     public bool die;
     public GameObject RestartCanvas;
+    public EnemySpawner spawner;
     private void Start()
     {
         die = false;
@@ -25,13 +26,14 @@ public class PlayerHealth : MonoBehaviour
         {
             player.animator.SetBool("death", true);
             die = true;
+            spawner.StopSpawning();
             StartCoroutine(ActivateCanvas()); 
         }
     }
 
     IEnumerator ActivateCanvas()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         RestartCanvas.SetActive(true);
         Time.timeScale = 0;
     }

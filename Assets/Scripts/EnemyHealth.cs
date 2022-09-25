@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public EnemySpawner spawner;
     void Start()
     {
-        this.damage = 4;
+        this.damage = 1;
         this.killed = false;
     }
 
@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(this.damage <= 0)
         {
-            animator.SetBool("death", true);
+            this.animator.SetBool("death", true);
             this.rb.bodyType = RigidbodyType2D.Static;
             StartCoroutine(murderedEnemy());
         }
@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator  murderedEnemy()
     {
-        yield return new  WaitForSeconds(2f);
+        yield return new  WaitForSeconds(5);
         this.killed = true;
         spawner.KillCounter(1);
     }

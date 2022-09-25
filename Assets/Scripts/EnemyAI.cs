@@ -104,7 +104,7 @@ public class EnemyAI : MonoBehaviour
         if (smoothedVelocity.magnitude < 0.1f)
         {
             animator.SetFloat("Horizontal", 0f);
-            animator.SetFloat("Vertical", 0f);
+            animator.SetFloat("Vertical",   0f);
         }
         else
         {
@@ -174,17 +174,12 @@ public class EnemyAI : MonoBehaviour
             playerController.animator.SetTrigger("sideLeft");
         }
 
-        else if (playerController.movement.y > 0 && attack == true)
-        {
-            playerController.animator.SetTrigger("front");
-        }
-
         else if (playerController.movement.y < 0 && attack == true)
         {
             playerController.animator.SetTrigger("front");
         }
 
-        else if (attack == true)
+        else if (playerController.movement.x ==0 && playerController.movement.y == 0 && attack == true)
         {
             playerController.animator.SetTrigger("front");
         }
@@ -203,7 +198,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(attack == true )
         {
-            AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position,0.5f);
             playerHealth.TakeDamage(1);
         }
     }

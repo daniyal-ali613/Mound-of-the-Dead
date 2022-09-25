@@ -5,18 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-
-
+    MusicPlayer music;
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+        music = FindObjectOfType<MusicPlayer>();
+    }
     public void RestartScene()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(2);
+        Time.timeScale = 1;
     }
 
     public void LoadMainMenu()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void LoadMainMenuFromCredits()
+    {
+        SceneManager.LoadScene(0);
+        DontDestroyOnLoad(music);
     }
 
     public void LoadGame()
@@ -32,6 +42,7 @@ public class LevelLoader : MonoBehaviour
     public void LoadCreditsScene()
     {
         SceneManager.LoadScene(3);
+        DontDestroyOnLoad(music);
     }
 
 

@@ -17,70 +17,74 @@ public class PlayerController : MonoBehaviour
     public AudioClip EnemyDamage;
     public AudioClip AxeSwing;
     EnemyAI enemyAI;
-    Vector2 size;
 
 
     private void Start()
     {
         enemyAI = GetComponent<EnemyAI>();
-        size = collider.size;
     }
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
 
-
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-
-
-
-        if (Input.GetMouseButtonDown(0) && movement.x > 0)
+        if(Time.timeScale == 1)
         {
-            animator.SetTrigger("right");
-            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
-        }
 
-        else if (Input.GetMouseButtonDown(0) && movement.x < 0)
-        {
-            animator.SetTrigger("left");
-            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
 
-        }
 
-        else if (Input.GetMouseButtonDown(0) && movement.y > 0)
-        {
-            animator.SetTrigger("up");
-            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        }
 
-        else if (Input.GetMouseButtonDown(0) && movement.y < 0)
-        {
-            animator.SetTrigger("down");
-            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
-
-        }
-
-        else if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("down");
-            AudioSource.PlayClipAtPoint(AxeSwing,Camera.main.transform.position);
-
-        }
-
-        foreach (var target in targets)
-        {
-            if (target)
+            if (Input.GetMouseButtonDown(0) && movement.x > 0)
             {
-                if (target.GetComponentInChildren<EnemyHealth>().killChecker() == true)
+                animator.SetTrigger("right");
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+            }
+
+            else if (Input.GetMouseButtonDown(0) && movement.x < 0)
+            {
+                animator.SetTrigger("left");
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+
+            }
+
+            else if (Input.GetMouseButtonDown(0) && movement.y > 0)
+            {
+                animator.SetTrigger("up");
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+
+            }
+
+            else if (Input.GetMouseButtonDown(0) && movement.y < 0)
+            {
+                animator.SetTrigger("down");
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+
+            }
+
+            else if (Input.GetMouseButtonDown(0))
+            {
+                animator.SetTrigger("down");
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+
+            }
+
+            foreach (var target in targets)
+            {
+                if (target)
                 {
-                    target.gameObject.SetActive(false);
+                    if (target.GetComponentInChildren<EnemyHealth>().killChecker() == true)
+                    {
+                        target.gameObject.SetActive(false);
+                    }
                 }
             }
         }
+
+       
     }
 
     private void FixedUpdate()
@@ -110,21 +114,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Walls"))
-        {
-            size = new Vector2(1.89315081f, 1.43315518f);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Walls"))
-        {
-            size = new Vector2(1.89315081f, 5.01296949f);
-        }
-    }
 
     public void AddTarget( GameObject target)
     {
