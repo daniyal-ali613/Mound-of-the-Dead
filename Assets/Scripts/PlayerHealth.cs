@@ -24,16 +24,16 @@ public class PlayerHealth : MonoBehaviour
     {
         if(currentHealth  >= 100)
         {
-            player.animator.SetBool("death", true);
             die = true;
             spawner.StopSpawning();
+            player.animator.SetBool("death", true);
             StartCoroutine(ActivateCanvas()); 
         }
     }
 
     IEnumerator ActivateCanvas()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
         RestartCanvas.SetActive(true);
         Time.timeScale = 0;
     }

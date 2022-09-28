@@ -24,7 +24,8 @@ public class HighScore : MonoBehaviour
             bestScore = finalScore;
         }
 
-        txt.text = bestScore.ToString();
+        PlayerPrefs.SetInt("score", bestScore);
+        txt.text = PlayerPrefs.GetInt("score").ToString();
     }
 
 }

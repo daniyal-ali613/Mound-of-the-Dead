@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public EnemySpawner spawner;
     void Start()
     {
-        this.damage = 1;
+        this.damage = 4;
         this.killed = false;
     }
 
@@ -42,5 +42,5 @@ public class EnemyHealth : MonoBehaviour
         spawner.KillCounter(1);
     }
 
-    
+
 }

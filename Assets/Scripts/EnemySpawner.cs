@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
         counter = enemy.Count;
         numOfEnemiesKilled = 0;
         spawn = StartCoroutine(StartSpawning());
+        DontDestroyOnLoad(this);
     }
 
     private void Update()
@@ -35,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(ActivateCanvas());
         }
+
     }
 
     
@@ -67,8 +69,8 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator ActivateCanvas()
     {
         yield return new WaitForSeconds(5);
-        Time.timeScale = 0;
         Restart.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void KillCounter(int kill)

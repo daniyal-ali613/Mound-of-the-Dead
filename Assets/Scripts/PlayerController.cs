@@ -13,15 +13,18 @@ public class PlayerController : MonoBehaviour
     public GameObject spawnpoint3;
     public GameObject spawnpoint4;
     public Vector2 movement;
-    public BoxCollider2D collider;
     public AudioClip EnemyDamage;
     public AudioClip AxeSwing;
+    private BoxCollider2D box;
+    Vector2 currentOffset;
     EnemyAI enemyAI;
 
 
     private void Start()
     {
         enemyAI = GetComponent<EnemyAI>();
+        box = GetComponent<BoxCollider2D>();
+        currentOffset = box.offset;
     }
     void Update()
     {
@@ -41,34 +44,34 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && movement.x > 0)
             {
                 animator.SetTrigger("right");
-                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.1f);
             }
 
             else if (Input.GetMouseButtonDown(0) && movement.x < 0)
             {
                 animator.SetTrigger("left");
-                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.1f);
 
             }
 
             else if (Input.GetMouseButtonDown(0) && movement.y > 0)
             {
                 animator.SetTrigger("up");
-                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.1f);
 
             }
 
             else if (Input.GetMouseButtonDown(0) && movement.y < 0)
             {
                 animator.SetTrigger("down");
-                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.1f);
 
             }
 
             else if (Input.GetMouseButtonDown(0))
             {
                 animator.SetTrigger("down");
-                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.5f);
+                AudioSource.PlayClipAtPoint(AxeSwing, Camera.main.transform.position, 0.1f);
 
             }
 
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 {
                         target.GetComponentInChildren<EnemyHealth>().TakeDamage(1);
                         target.GetComponentInChildren<EnemyAI>().animator.SetTrigger("damage");
-                        AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position);
+                        AudioSource.PlayClipAtPoint(EnemyDamage, Camera.main.transform.position,0.1f);
                 }
             }
 
@@ -114,6 +117,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            if (this.movement.y < 0 && box != null || this.movement.x == 0 && this.movement.y == 0 && box != null)
+            {
+                box.enabled = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            box.enabled = true;
+        }
+    }
 
     public void AddTarget( GameObject target)
     {

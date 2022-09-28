@@ -10,10 +10,71 @@ public class CameraController : MonoBehaviour
     public Vector2 maxPos;
     public Vector2 minPos;
 
+    private Vector3 orignalCameraPos;
+    public List<GameObject> enemies = new List<GameObject>();
 
-    private void LateUpdate()
+    // Shake Parameters
+    public float shakeDuration = 2f;
+    public float shakeAmount = 0.7f;
+
+    private bool canShake = false;
+    private float _shakeTimer;
+    int i;
+
+
+    private void Start()
     {
-        if (transform.position != target.position)
+        orignalCameraPos = transform.localPosition;
+    }
+
+    private void Update()
+    {
+        foreach(GameObject enemy in enemies)
+        {
+            if (enemy.activeInHierarchy == true)
+            {
+                ShakeCamera();
+            }
+
+            else
+            {
+                return;
+            }
+        }
+
+
+        if (canShake)
+        {
+            StartCameraShakeEffect();
+        }
+    }
+
+    public void ShakeCamera()
+    {
+        canShake = true;
+        _shakeTimer = shakeDuration;
+    }
+
+    public void StartCameraShakeEffect()
+    {
+        if (_shakeTimer > 0)
+        {
+            transform.localPosition = orignalCameraPos + Random.insideUnitSphere * shakeAmount;
+            _shakeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            i++;
+            _shakeTimer = 0f;
+            transform.position = orignalCameraPos;
+            //  cameraController.enabled = true;
+            canShake = false;
+        }
+    }
+
+     private void LateUpdate()
+    {
+        if (transform.position != target.position && !canShake)
         {
             Vector3 targetPos = new Vector3(target.position.x, target.position.y, transform.position.z);
 
@@ -24,4 +85,8 @@ public class CameraController : MonoBehaviour
         }
 
     }
-}
+
+
+  }
+
+
