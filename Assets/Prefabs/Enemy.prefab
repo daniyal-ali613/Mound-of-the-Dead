@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 430611324973457367}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &430611324973457366
 GameObject:
@@ -179,7 +179,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 1.5
   m_AngularDrag: 0.05
@@ -205,16 +205,21 @@ MonoBehaviour:
   enemyGFX: {fileID: 430611324973457367}
   animator: {fileID: 430611324973457192}
   playerController: {fileID: 0}
-  minHorizotalDistance: 1.13
-  minVerticleDistance: 2
+  maxDistance: 0
   speed: 400
   nextWayPointDistance: 3
-  dist: 0
   direction: {x: 0, y: 0}
   sprite: {fileID: 0}
   playerHealth: {fileID: 0}
-  attack: 0
+  enemyAttackSound: {fileID: 0}
+  playerRenderer: {fileID: 0}
   smoothedSpeed: 10
+  separationRadius: 0.5
+  separationStrength: 15
+  maxSpeed: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &430611324973457196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,3 +262,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 430611324973457192}
   rb: {fileID: 430611324973457194}
+  spawner: {fileID: 0}
